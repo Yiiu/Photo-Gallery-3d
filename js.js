@@ -1,34 +1,42 @@
 window.onload = function(){
-	var oimg = getClass("div","photo");
-	var aimg = getClass("div","photo-wrap");
-	var button = true;
-	for(var i = 0;i<8;i++){
-		this.onclick = function(){
-			if(button){
-				this.className = "photo-wrap photo-back";
-				button = false;
-			}else{
-				this.className = "photo-wrap photo-front";
-				button = true;
-			}
-		}
-	}
-	img();
-	imgi();
-	test();
+	var num = 15; // 照片的个数
+	img(num);
+	imgi(num);
+	value();
+	//test();
 }
 function test(){
+	var photos = [];
+	var _photo = getClass("div","photo");
+	for(i = 0;i<_photo.length;i++){
+		photos.push(_photo[i]);
+		photos[i].index = i++;
+	}
+	return(photos);
+}
+/* photo的点击事件 */
+function turn(elem){
+	var cls = elem.className;
+	if(/photo-front/.test(cls)){
+		cls = cls.replace(/photo-front/,'photo-back')
+	}else{
+		cls = cls.replace(/photo-back/,'photo-front')
+	}
+	return elem.className = cls;
+}
+/*
+*修改photoDIV的top和left
+ */
+function value(){
 	var suiji = 0;
 	var Height = document.body.scrollHeight;
 	var Width = document.body.scrollWidth;
 	var oimg = getClass("div","photo");
-	alert(Width)
-	alert(Height)
 	for(var i = 0;i<oimg.length;i++){
 		oimg[i].style.left = random(0,Width-100)+"px";
 		oimg[i].style.top = random(0,Height-100)+"px";
 		oimg[i].style.transform =
-		"rotate("+random(-30,30)+"deg)";
+		"rotate("+random(-100,100)+"deg)";
 	}
 	/*for(var i = 0;i<10;i++){
 		-webkit-transform:rotate(7deg);
@@ -42,19 +50,22 @@ function random(min,max){
 	return(i);
 }
 /* 输出photo div */
-function img(){
+function img(num){
 	var cont = getClass("div","content");
 	var Icont = cont[0].innerHTML;
 	var oimg = getClass("div","photo");
-	var length = 8;
-	for(var i = 1;i<length;i++){
+	var photos = getClass("div","photo-wrap");
+	for(var i = 1;i<num;i++){
 		cont[0].innerHTML += Icont;
 	}
+	for(var s = 0;s<photos.length;s++){
+		photos[s].id = "photo_"+s;
+	}
+
 }
 /* 修改图片的src */
-function imgi(){
+function imgi(length){
 	var img = getClass("div","img");
-	var length = 8;
 	var num = 0;
 	var j = 1;
 	for(var i = 0;i<length;i++){
