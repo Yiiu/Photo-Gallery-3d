@@ -19,13 +19,14 @@ window.onload = function(){
 }
 function test(){
 	var suiji = 0;
-	var Height = document.body.clientHeight;
-	var Width = document.body.clientWidth;
+	var Height = document.body.scrollHeight;
+	var Width = document.body.scrollWidth;
 	var oimg = getClass("div","photo");
 	alert(Width)
+	alert(Height)
 	for(var i = 0;i<oimg.length;i++){
-		oimg[i].style.left = random(0,Height)+"px";
-		oimg[i].style.top = random(0,Width)+"px";
+		oimg[i].style.left = random(0,Width-100)+"px";
+		oimg[i].style.top = random(0,Height-100)+"px";
 		oimg[i].style.transform =
 		"rotate("+random(-30,30)+"deg)";
 	}
