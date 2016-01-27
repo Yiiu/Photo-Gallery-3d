@@ -14,9 +14,31 @@ function test(){
 	}
 	return(photos);
 }
-/* photo的点击事件 */
+/* photo-center的点击事件 */
+function center(elem){
+	var cls = elem.className;
+	var sty = elem.style;
+	var pcls = elem.innerHTML;
+	var mask = document.getElementById('mask');
+	elem.removeAttribute("style");//removeAttribute 删除此标签
+	if(!/photo-center/.test(cls)){
+		cls += " photo-center ";
+	}
+	mask.removeAttribute("class");
+	startMove(mask,'opacity',100);
+	return elem.className = cls;
+}
+/* photo-wrap此div获得turn();函数， */
+function turn_button(elems){
+	var phtml = elems.innerHTML;
+	if(/onclick=" "/.test(phtml)){
+		phtml =phtml.replace(/onclick=" "/,'onclick="turn(this)"')
+	}
+	return elems.innerHTML = phtml;
+}
 function turn(elem){
 	var cls = elem.className;
+	var mask = document.getElementById('mask');
 	if(/photo-front/.test(cls)){
 		cls = cls.replace(/photo-front/,'photo-back')
 	}else{
@@ -54,7 +76,7 @@ function img(num){
 	var cont = getClass("div","content");
 	var Icont = cont[0].innerHTML;
 	var oimg = getClass("div","photo");
-	var photos = getClass("div","photo-wrap");
+	var photos = getClass("div","photo");
 	for(var i = 1;i<num;i++){
 		cont[0].innerHTML += Icont;
 	}

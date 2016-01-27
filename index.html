@@ -6,11 +6,11 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <body onselectstart="return false;">
 <div class="content">
-    <div class="photo">
-        <div class="photo-wrap photo-front" id="{{index}}" onclick="turn(this)">
+    <div class="photo" id="{{index}}" onclick="center(this);">
+        <div class="photo-wrap photo-front" onclick="turn(this)">
             <div class="side side-wrap">
                 <div>
-                    <img class="img" src="{{jpg}}"width="200px">
+                    <img class="img" src="{{jpg}}" >
                 </div>
                     <div class="caption">{{caption}}</div>
             </div>
@@ -19,7 +19,11 @@
             </div>
         </div>
     </div>
+    <div id="mask" class="none" style="opacity:0;">
+        <div id="x">X</div>
+    </div>
 </div>
 </body>
 <script type="text/javascript" src="js.js"></script>
+<script type="text/javascript" src="my.js"></script>
 </html>
