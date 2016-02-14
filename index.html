@@ -7,7 +7,7 @@
 <body onselectstart="return false;">
 <div class="content">
     <div class="photo" id="{{index}}" onclick="center(this);">
-        <div class="photo-wrap photo-front" onclick="turn(this)">
+        <div class="photo-wrap photo-front">
             <div class="side side-wrap">
                 <div>
                     <img class="img" src="{{jpg}}" >
@@ -19,9 +19,9 @@
             </div>
         </div>
     </div>
-    <div id="mask" class="none" style="opacity:0;">
-        <div id="x">X</div>
-    </div>
+</div>
+<div id="mask" class="none" style="opacity:0;">
+    <div id="x" onclick="photo_off()">X</div>
 </div>
 </body>
 <script type="text/javascript" src="js.js"></script>

@@ -3,6 +3,7 @@ window.onload = function(){
 	img(num);
 	imgi(num);
 	value();
+	photo_off();
 	//test();
 }
 function test(){
@@ -18,24 +19,37 @@ function test(){
 function center(elem){
 	var cls = elem.className;
 	var sty = elem.style;
-	var pcls = elem.innerHTML;
+	var phtml = elem.innerHTML;
 	var mask = document.getElementById('mask');
 	elem.removeAttribute("style");//removeAttribute 删除此标签
 	if(!/photo-center/.test(cls)){
-		cls += " photo-center ";
+		cls += " photo-center";
 	}
 	mask.removeAttribute("class");
-	startMove(mask,'opacity',100);
+	mask.style.opacity = 1;
 	return elem.className = cls;
 }
+function photo_off(){
+	var off = document.getElementById('x');
+	var photo = getClass('div','photo');
+	var center = getClass('div','photo-center')[0];
+	var mask = document.getElementById('mask');
+	if(/photo-back/.test(center.innerHTML)){
+		center.innerHTML = center.innerHTML.replace(/photo-back/,'photo-front')
+	}
+	center.className =center.className.replace(/photo photo-center/,'photo');
+	mask.className = 'none';
+	mask.style.opacity = 0;
+	value();
+}
 /* photo-wrap此div获得turn();函数， */
-function turn_button(elems){
+/*function turn_button(elems){
 	var phtml = elems.innerHTML;
 	if(/onclick=" "/.test(phtml)){
 		phtml =phtml.replace(/onclick=" "/,'onclick="turn(this)"')
 	}
 	return elems.innerHTML = phtml;
-}
+}*/
 function turn(elem){
 	var cls = elem.className;
 	var mask = document.getElementById('mask');
